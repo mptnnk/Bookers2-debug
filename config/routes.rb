@@ -8,9 +8,10 @@ Rails.application.routes.draw do
 
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
     resource :favorites, only: [:create, :destroy]
+    resources :book_comments, only: [:create, :destroy]
   end
-  # favoriteのパスに:book_idを含めたルーティングを設定するためにネストする
-  # どの投稿にいいねしたのかをわかるようにするため
+  # パスに:book_idを含めたルーティングを設定するためにネストする
+  # どの投稿にいいね・コメントしたのか区別するため
   resources :users, only: [:index,:show,:edit,:update]
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
