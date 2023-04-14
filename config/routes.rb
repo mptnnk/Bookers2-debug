@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # パスに:book_idを含めたルーティングを設定するためにネストする
   # どの投稿にいいね・コメントしたのか区別するため
   resources :users, only: [:index,:show,:edit,:update] do
-    resource :relationthips, only: [:create, :destroy]
+    resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationshps#followers', as: 'followers'
   end

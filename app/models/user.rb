@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   
   # 自分がフォローする（与フォロー）側の関係性
-  has_many :relationships, class_name: "Relationship", foreign_key: :"follower_id", dependet: :destroy
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   # 与フォロー関係を通じて参照→自分がフォローしている人
   has_many :followings, through: :relationships, source: :followed
   
@@ -31,11 +31,11 @@ class User < ApplicationRecord
   def follow(user)
     relationships.create(followed_id: user.id)
   end
-  
+
   def unfollow(user)
     relationships.find_by(followed_id: user.id).destroy
   end
-  
+
   def following?(user)
     followings.include?(user)
   end
