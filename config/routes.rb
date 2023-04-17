@@ -12,11 +12,14 @@ Rails.application.routes.draw do
   end
   # パスに:book_idを含めたルーティングを設定するためにネストする
   # どの投稿にいいね・コメントしたのか区別するため
+  
   resources :users, only: [:index,:show,:edit,:update] do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
   end
+  
+  get '/search', to: 'searches#search'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
