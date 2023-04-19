@@ -1,13 +1,13 @@
 <% if book.favorited_by?(current_user) %>
 <!--bookモデルに定義したメソッドの呼び出し-->
-<!--もしcurrent_userによるいいねが存在ば、destroyアクションに飛ぶ-->
-  <%= link_to book_favorites_path(book), method: :delete do %>
+<!--もしcurrent_userによるいいねが存在すれば、destroyアクションに飛ぶ-->
+  <%= link_to book_favorites_path(book), method: :delete, remote: true do %>
     <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
     <%= book.favorites.count %>いいね
   <% end %>
 <% else %>
-<!--もしcurrent_userによるいいねがなければ、createに飛ぶ-->
-  <%= link_to book_favorites_path(book), method: :post do %>
+<!--もしcurrent_userによるいいねが存在しなければ、createに飛ぶ-->
+  <%= link_to book_favorites_path(book), method: :post, remote: true do %>
     <i class="fas fa-heart" aria-hidden="true"></i>
     <%= book.favorites.count %>いいね
   <% end %>
