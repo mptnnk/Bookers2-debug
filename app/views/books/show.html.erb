@@ -23,6 +23,7 @@
           <td class=<%= "favorite-" + @book.id.to_s %> >
             <%= render "favorites/btn", book: @book %>
           </td>
+          <td><%= render "static_rate",book: @book %></td>
           
           <% if @user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book.id), class: "btn btn-sm btn-success" %></td>
