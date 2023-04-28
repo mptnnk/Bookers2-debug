@@ -10,8 +10,10 @@ class SearchesController < ApplicationController
     # formのoptions_for_selectオプションから一致の度合いを取得（完全一致等）
     if @model == 'user'
       @records = User.search_for(@content, @method)
-    else
+    elsif @model == 'book'
       @records = Book.search_for(@content, @method)
+		elsif @model == 'tag'
+			@records = Tag.search_books_for(@content, @method)
     end
   end
   

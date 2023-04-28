@@ -17,7 +17,9 @@ class BooksController < ApplicationController
   def create
     @booknew = Book.new(book_params)
     @booknew.user_id = current_user.id
+    tag_list = params[:book][:tag_name].split(',')
     if @booknew.save
+      @booknew.save_tags(tag_list)
       redirect_to book_path(@booknew.id), notice: "You have created book successfully."
     else
       @books = Book.all
